@@ -1,8 +1,8 @@
-use std::collections::{BinaryHeap, VecDeque};
+use std::collections::VecDeque;
 
 pub fn solve1(data: &str) -> u128 {
     let mut free_space = 0;
-    let disk: Vec<Option<u128>> = data.char_indices().map(|(idx, c)| {
+    let disk: Vec<Option<u128>> = data.char_indices().flat_map(|(idx, c)| {
         if idx % 2 == 0 {
             vec![Some(idx as u128 / 2); c.to_digit(10).unwrap() as usize]
         } else {
@@ -10,7 +10,7 @@ pub fn solve1(data: &str) -> u128 {
             free_space += free;
             vec![None; free]
         }
-    }).flatten().collect();
+    }).collect();
     let n = disk.len();
 
     let mut filler = disk.iter().filter(|&c| c.is_some()).rev();
@@ -38,7 +38,7 @@ pub fn solve2(data: &str) -> u128 {
     let mut free_space: VecDeque<(u128, usize)> = VecDeque::new();
     let mut groups: VecDeque<(Vec<Option<u128>>, usize)> = VecDeque::new();
 
-    let mut disk: Vec<Option<u128>> = data.char_indices().map(|(idx, c)| {
+    let mut disk: Vec<Option<u128>> = data.char_indices().flat_map(|(idx, c)| {
         if idx % 2 == 0 {
             let id = idx as u128 / 2;
             let len = c.to_digit(10).unwrap() as usize;
@@ -51,7 +51,7 @@ pub fn solve2(data: &str) -> u128 {
             group_idx += free;
             vec![None; free]
         }
-    }).flatten().collect();
+    }).collect();
 
     while let Some((group, group_idx)) = groups.pop_back() {
         let mut used: VecDeque<(u128, usize)> = VecDeque::new();

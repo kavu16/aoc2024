@@ -79,7 +79,7 @@ pub fn solve1(data: &str) -> u32 {
 use std::collections::HashSet;
 
 pub fn solve2(data: &str) -> u32 {
-    let mut grid: Vec<Vec<char>> = data.lines().map(|l| l.chars().collect()).collect();
+    let grid: Vec<Vec<char>> = data.lines().map(|l| l.chars().collect()).collect();
     let (rows, cols) = (grid.len(), grid[0].len());
 
     let mut dir = Direction::Up;

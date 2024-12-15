@@ -42,7 +42,7 @@ pub fn solve1(data: &str) -> u32 {
             queue.push_back((id, (r, c+1)));
         }
     }
-    let res = trail_heads.into_iter().map(|(_id, peaks)| peaks.len() as u32).sum();
+    let res = trail_heads.into_values().map(|peaks| peaks.len() as u32).sum();
 
     println!("Day 10 Part 1 = {res}");
     res
@@ -90,7 +90,7 @@ pub fn solve2(data: &str) -> u32 {
             queue.push_back((id, (r, c+1)));
         }
     }
-    let res = trail_heads.into_iter().map(|(_id, peaks)| peaks).sum();
+    let res = trail_heads.into_values().sum();
 
     println!("Day 10 Part 2 = {res}");
     res

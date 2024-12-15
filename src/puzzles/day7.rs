@@ -35,7 +35,7 @@ pub fn solve1(data: &str) -> u128 {
         let (target, calibration) = line.split_once(':').unwrap();
         let target: u128 = target.parse().unwrap();
 
-        let calibration: Vec<u128> = calibration.trim().split_whitespace().map(|n| n.parse().unwrap()).collect();
+        let calibration: Vec<u128> = calibration.split_whitespace().map(|n| n.parse().unwrap()).collect();
 
         if calibrate(target, &calibration) { res += target; }
     }
@@ -49,7 +49,7 @@ pub fn solve2(data: &str) -> u128 {
         let (target, calibration) = line.split_once(':').unwrap();
         let target: u128 = target.parse().unwrap();
 
-        let calibration: Vec<u128> = calibration.trim().split_whitespace().map(|n| n.parse().unwrap()).collect();
+        let calibration: Vec<u128> = calibration.split_whitespace().map(|n| n.parse().unwrap()).collect();
 
         if concalibrate(target, &calibration) { res += target; }
     }

@@ -1,6 +1,6 @@
 use itertools::Itertools;
 
-pub fn solve1(data: &String) -> usize {
+pub fn solve1(data: &str) -> usize {
     let mut res = 0;
     for line in data.lines() {
         let diffs = line.split_whitespace().tuple_windows()
@@ -15,7 +15,7 @@ pub fn solve1(data: &String) -> usize {
     res
 }
 
-pub fn solve2(data: &String) -> usize {
+pub fn solve2(data: &str) -> usize {
     let mut res = 0;
     'rep: for line in data.lines() {
         let levels: Vec<i32> = line.split_whitespace().map(|n| n.parse().unwrap()).collect();

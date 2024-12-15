@@ -1,4 +1,4 @@
-pub fn solve1(data: &String) -> i32 {
+pub fn solve1(data: &str) -> i32 {
     let xmas_grid: Vec<Vec<char>> = data.lines().map(|row| row.chars().collect()).collect();
     let (rows, cols) = (xmas_grid.len(), xmas_grid[0].len());
     let xmas = ['X', 'M', 'A', 'S'];
@@ -12,8 +12,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Go to right
                 if c < cols - 3 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r][c+i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r][c+i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -21,8 +21,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Go to left
                 if c > 2 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r][c-i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r][c-i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -30,8 +30,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Go up
                 if r > 2 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r-i][c] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r-i][c] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -39,8 +39,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Go down
                 if r < rows - 3 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r+i][c] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r+i][c] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -48,8 +48,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Up and right
                 if r > 2 && c < cols - 3 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r-i][c+i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r-i][c+i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -57,8 +57,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Down and right
                 if r < rows - 3 && c < cols - 3 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r+i][c+i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r+i][c+i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -66,8 +66,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Up and left
                 if r > 2 && c > 2 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r-i][c-i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r-i][c-i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }
@@ -75,8 +75,8 @@ pub fn solve1(data: &String) -> i32 {
                 // Down and left
                 if r < rows - 3 && c > 2 {
                     let mut xmasfound = true;
-                    for i in 1..=3 {
-                        if xmas_grid[r+i][c-i] != xmas[i] { xmasfound = false; break; }
+                    for (i, &x) in xmas.iter().enumerate().skip(1) {
+                        if xmas_grid[r+i][c-i] != x { xmasfound = false; break; }
                     }
                     xmas_count += xmasfound as i32;
                 }

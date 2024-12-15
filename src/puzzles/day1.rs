@@ -1,5 +1,5 @@
 use std::collections::{BinaryHeap, HashMap};
-pub fn solve1(data: &String) -> u32 {
+pub fn solve1(data: &str) -> u32 {
 
     let (mut left, mut right) = (BinaryHeap::new(), BinaryHeap::new());
     data.lines()
@@ -18,7 +18,7 @@ pub fn solve1(data: &String) -> u32 {
     res
 }
 
-pub fn solve2(data: &String) -> u32 {
+pub fn solve2(data: &str) -> u32 {
 
     let (mut left, mut right) = (Vec::new(), HashMap::new());
     data.lines()

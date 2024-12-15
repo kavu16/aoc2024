@@ -86,7 +86,7 @@ pub fn solve2(data: &str) -> u32 {
         let mut corrected = VecDeque::<u32>::new();
         let pages: HashSet<u32> = pages.into_iter().collect();
         fn visit(page: u32, pages: &HashSet<u32>, seen: &mut HashSet<u32>, rules: &HashMap<u32, HashSet<u32>>, corrected: &mut VecDeque<u32>, depth: usize) {
-            if seen.contains(&page) || depth <= 0 { return; }
+            if seen.contains(&page) || depth == 0 { return; }
 
             if let Some(after_set) = rules.get(&page) {
                 for a in after_set {

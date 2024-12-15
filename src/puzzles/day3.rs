@@ -1,6 +1,6 @@
 use regex::Regex;
 
-pub fn solve1(data: &String) -> i32 {
+pub fn solve1(data: &str) -> i32 {
     let re = Regex::new(r"mul\((\d+),(\d+)\)").unwrap();
 
     // let mut nums: Vec<(i32, i32)> = vec![];
@@ -18,7 +18,7 @@ pub fn solve1(data: &String) -> i32 {
     res
 }
 
-pub fn solve2(data: &String) -> i32 {
+pub fn solve2(data: &str) -> i32 {
     let re = Regex::new(r"(mul\((\d+),(\d+)\))|(do\(\))|(don't\(\))").unwrap();
     let mut do_toggle = true;
     let mut res = 0;
