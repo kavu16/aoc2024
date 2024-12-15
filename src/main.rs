@@ -61,6 +61,7 @@ fn main() {
                 }
                 "day12" => {
                     day12::solve1(&data);
+                    day12::solve2(&data);
                 }
                 _ => {
                     panic!("Invalid Day!");

@@ -99,17 +99,13 @@ impl Plot {
             cmax = cmax.max(c);
         }
 
-        println!("rmin = {rmin}, rmax = {rmax}");
-        println!("cmin = {cmin}, cmax = {cmax}");
-
         let mut side_count = 0;
         // Top Sides
         for r in rmin..rmax + 1 {
             let mut cpos = cmin;
             while cpos < cmax + 1 {
-                print!("({r},{cpos}) => ");
-                if !self.locs.contains(&(r, cpos)) || (r > 0 && self.locs.contains(&(r-1, cpos))) { print!("Not a side\n"); cpos += 1; continue; }
-                while cpos < cmax + 1 && self.locs.contains(&(r, cpos)) && (r == 0 || !self.locs.contains(&(r-1, cpos))) { print!("Starts a side\n"); cpos += 1; }
+                if !self.locs.contains(&(r, cpos)) || (r > 0 && self.locs.contains(&(r-1, cpos))) { cpos += 1; continue; }
+                while cpos < cmax + 1 && self.locs.contains(&(r, cpos)) && (r == 0 || !self.locs.contains(&(r-1, cpos))) { cpos += 1; }
                 side_count += 1;
             }
         }
@@ -128,7 +124,7 @@ impl Plot {
         for c in cmin..cmax + 1 {
             let mut rpos = rmin;
             while rpos < rmax + 1 {
-                if !self.locs.contains(&(c, rpos)) || (c > 0 && self.locs.contains(&(rpos, c-1))) { rpos += 1; continue; }
+                if !self.locs.contains(&(rpos, c)) || (c > 0 && self.locs.contains(&(rpos, c-1))) { rpos += 1; continue; }
                 while rpos < rmax + 1 && self.locs.contains(&(rpos, c)) && (c == 0 || !self.locs.contains(&(rpos, c-1))) { rpos += 1; }
                 side_count += 1;
             }
@@ -150,7 +146,7 @@ impl Plot {
 
 pub fn solve2(data: &str) -> usize {
     let mut garden: Vec<Vec<Option<char>>> = data.lines().map(|line| {
-        line.chars().map(|v| Some(v)).collect()
+        line.chars().map(Some).collect()
     }).collect();
 
     let (rows, cols) = (garden.len(), garden[0].len());
@@ -158,13 +154,13 @@ pub fn solve2(data: &str) -> usize {
     for r in 0..rows {
         for c in 0..cols {
             if let Some(plot) = garden[r][c] {
-                dbg!(plot);
                 let curr_plot = Plot::new(plot, r, c, rows, cols, &mut garden);
-                res += dbg!(curr_plot.area())*dbg!(curr_plot.sides());
+                res += curr_plot.area()*curr_plot.sides();
             }
         }
     }
 
+    println!("Day 12 Part 2 = {res}");
     res
 }
 
@@ -197,9 +193,30 @@ MIIISIJEEE
 MMMISSJEEE"
     );
 
+    let data4 = String::from(
+"EEEEE
+EXXXX
+EEEEE
+EXXXX
+EEEEE"
+    );
+
+    let data5 = String::from(
+"AAAAAA
+AAABBA
+AAABBA
+ABBAAA
+ABBAAA
+AAAAAA"
+    );
+
     assert_eq!(solve1(&data1), 140);
     assert_eq!(solve1(&data2), 772);
     assert_eq!(solve1(&data3), 1930);
 
     assert_eq!(solve2(&data1), 80);
+    assert_eq!(solve2(&data2), 436);
+    assert_eq!(solve2(&data3), 1206);
+    assert_eq!(solve2(&data4), 236); 
+    assert_eq!(solve2(&data5), 368);
 }
