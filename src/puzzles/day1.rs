@@ -20,7 +20,7 @@ pub fn solve1(data: &str) -> u32 {
 
 pub fn solve2(data: &str) -> u32 {
 
-    let (mut left, mut right) = (Vec::new(), HashMap::new());
+    let (mut left, mut right) = (Vec::new(), HashMap::<u32, u32>::new());
     data.lines()
         .flat_map(|line| line.split_once("   "))
         .map(|(l, r)| (l.parse::<u32>().unwrap(), r.parse::<u32>().unwrap()))
