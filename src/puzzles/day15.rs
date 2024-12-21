@@ -1,4 +1,4 @@
-use std::collections::{HashSet, VecDeque};
+use std::collections::VecDeque;
 
 pub fn solve1(data: &str) -> usize {
     let (grid, moves) = data.split_once("\n\n").unwrap();
