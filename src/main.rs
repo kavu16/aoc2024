@@ -82,6 +82,10 @@ fn main() {
                     day17::solve1(&data);
                     day17::solve2(&data);
                 }
+                "day18" => {
+                    day18::solve1::<71, 1024>(&data);
+                    day18::solve2::<71>(&data);
+                }
                 _ => {
                     panic!("Invalid Day!");
                 }
