@@ -10,7 +10,9 @@ fn main() {
     // env::set_var("RUST_BACKTRACE", "1");
     let args = std::env::args().collect::<Vec<String>>();
     match args.len() {
-        1 => {panic!("Not enough args!")},
+        1 => {
+            panic!("Not enough args!")
+        }
         _ => {
             let day = args[1].as_str();
             let data = fs::read_to_string(format!("data/{}.txt", day)).unwrap();
@@ -85,6 +87,18 @@ fn main() {
                 "day18" => {
                     day18::solve1::<71, 1024>(&data);
                     day18::solve2::<71>(&data);
+                }
+                "day19" => {
+                    day19::solve1(&data);
+                    day19::solve2(&data);
+                }
+                "day20" => {
+                    // day20::solve1(&data);
+                    day20::solve2(&data);
+                }
+                "day21" => {
+                    day21::solve1(&data);
+                    day21::solve2(&data);
                 }
                 _ => {
                     panic!("Invalid Day!");
